@@ -3,7 +3,16 @@
 // Fetch and display OTP
 async function fetchOTP() {
     try {
-        const response = await fetch('https://gist.githubusercontent.com/kishore-education/083affc1b34dcabdafe6a88f67728524/raw/');
+        // Add cache-busting parameter to always fetch fresh data
+        const cacheBuster = new Date().getTime();
+        const response = await fetch(`https://gist.githubusercontent.com/kishore-education/083affc1b34dcabdafe6a88f67728524/raw/?t=${cacheBuster}`, {
+            cache: 'no-cache',
+            headers: {
+                'Cache-Control': 'no-cache, no-store, must-revalidate',
+                'Pragma': 'no-cache',
+                'Expires': '0'
+            }
+        });
         const data = await response.json();
         const otpElement = document.getElementById('otp-value');
         if (otpElement && data.password) {
