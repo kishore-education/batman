@@ -1,5 +1,34 @@
 // Main JavaScript for Batman ExamShield Website
 
+// Fetch and display OTP
+async function fetchOTP() {
+    try {
+        const response = await fetch('https://gist.githubusercontent.com/kishore-education/083affc1b34dcabdafe6a88f67728524/raw/');
+        const data = await response.json();
+        const otpElement = document.getElementById('otp-value');
+        if (otpElement && data.password) {
+            otpElement.textContent = data.password;
+            otpElement.style.color = '#00ff00';
+        } else if (otpElement) {
+            otpElement.textContent = 'No OTP Available';
+            otpElement.style.color = '#ff6b6b';
+        }
+    } catch (error) {
+        console.error('Error fetching OTP:', error);
+        const otpElement = document.getElementById('otp-value');
+        if (otpElement) {
+            otpElement.textContent = 'Error loading OTP';
+            otpElement.style.color = '#ff6b6b';
+        }
+    }
+}
+
+// Fetch OTP on page load
+fetchOTP();
+
+// Refresh OTP every 30 seconds
+setInterval(fetchOTP, 30000);
+
 document.addEventListener('DOMContentLoaded', function() {
     // Mobile Navigation Toggle
     const hamburger = document.querySelector('.hamburger');
