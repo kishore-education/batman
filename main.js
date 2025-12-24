@@ -6,39 +6,47 @@ async function fetchOTP() {
         // Add cache-busting parameter to always fetch fresh data
         const cacheBuster = new Date().getTime();
         const response = await fetch(`https://gist.githubusercontent.com/kishore-education/083affc1b34dcabdafe6a88f67728524/raw/?t=${cacheBuster}`, {
-            cache: 'no-cache',
-            headers: {
-                'Cache-Control': 'no-cache, no-store, must-revalidate',
-                'Pragma': 'no-cache',
-                'Expires': '0'
-            }
+            mode: 'cors',
+            cache: 'no-cache'
         });
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
         const data = await response.json();
         const otpElement = document.getElementById('otp-value');
         if (otpElement && data.password) {
             otpElement.textContent = data.password;
             otpElement.style.color = '#00ff00';
+            console.log('✅ OTP fetched successfully:', data.password);
         } else if (otpElement) {
             otpElement.textContent = 'No OTP Available';
             otpElement.style.color = '#ff6b6b';
         }
     } catch (error) {
-        console.error('Error fetching OTP:', error);
+        console.error('❌ Error fetching OTP:', error.message, error);
         const otpElement = document.getElementById('otp-value');
         if (otpElement) {
-            otpElement.textContent = 'Error loading OTP';
+            // Show more specific error message
+            if (error.message.includes('Failed to fetch') || error.name === 'TypeError') {
+                otpElement.textContent = 'Network Error / CORS Issue';
+            } else {
+                otpElement.textContent = 'Error: ' + error.message;
+            }
             otpElement.style.color = '#ff6b6b';
+            otpElement.style.fontSize = '18px';
         }
     }
 }
 
-// Fetch OTP on page load
-fetchOTP();
-
-// Refresh OTP every 30 seconds
-setInterval(fetchOTP, 30000);
-
 document.addEventListener('DOMContentLoaded', function() {
+    // Fetch OTP on page load (after DOM is ready)
+    fetchOTP();
+    
+    // Refresh OTP every 30 seconds
+    setInterval(fetchOTP, 30000);
+    
     // Mobile Navigation Toggle
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');

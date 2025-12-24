@@ -8,13 +8,14 @@
 :root {
     --primary-color: #667eea;
     --secondary-color: #764ba2;
-    --dark-color: #1a1a2e;
-    --light-color: #f8f9fa;
-    --text-color: #333;
-    --text-light: #666;
-    --border-color: #e0e0e0;
-    --shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-    --shadow-hover: 0 15px 50px rgba(102, 126, 234, 0.3);
+    --dark-color: #0a0a0a;
+    --darker-color: #000000;
+    --light-color: #1a1a1a;
+    --text-color: #e0e0e0;
+    --text-light: #a0a0a0;
+    --border-color: #333333;
+    --shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    --shadow-hover: 0 15px 50px rgba(102, 126, 234, 0.5);
 }
 
 html {
@@ -26,6 +27,7 @@ body {
     line-height: 1.6;
     color: var(--text-color);
     overflow-x: hidden;
+    background: var(--darker-color);
 }
 
 .container {
@@ -35,13 +37,14 @@ body {
 }
 
 /* Navigation */
-.navbar {
-    background: white;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+.navbar {var(--dark-color);
+    box-shadow: 0 2px 10px rgba(102, 126, 234, 0.3);
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid var(--border-color)
     transition: all 0.3s ease;
 }
 
@@ -114,7 +117,7 @@ body {
 
 /* Hero Section */
 .hero {
-    padding: 120px 0 80px;
+    padding: 120px 0 80px;1a1a2e 0%, #16213e
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
     margin-top: 70px;
@@ -213,13 +216,14 @@ body {
     align-items: center;
 }
 
-.floating-card {
-    background: white;
+.floating-card {var(--dark-color);
     color: var(--text-color);
     padding: 2rem;
     border-radius: 16px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
     text-align: center;
+    animation: float 3s ease-in-out infinite;
+    border: 1px solid var(--border-color)
     animation: float 3s ease-in-out infinite;
 }
 
@@ -234,6 +238,7 @@ body {
 }
 
 /* Section Styles */
+    background: var(--darker-color);
 section {
     padding: 80px 0;
 }
@@ -245,7 +250,7 @@ section {
 
 .section-title {
     font-size: 2.5rem;
-    font-weight: 800;
+    font-weight: text
     margin-bottom: 1rem;
     color: var(--dark-color);
 }
@@ -256,7 +261,7 @@ section {
 }
 
 /* Tutorial Section */
-.tutorial {
+.tutorial {var(--light-color
     padding: 80px 0;
     background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
 }
@@ -281,7 +286,7 @@ section {
     object-fit: cover;
 }
 
-/* Features Section */
+/* Features Section */darker
 .features {
     background: var(--light-color);
 }
@@ -291,11 +296,12 @@ section {
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 2rem;
 }
-
-.feature-card {
-    background: white;
+var(--dark-color);
     padding: 2rem;
     border-radius: 12px;
+    box-shadow: var(--shadow);
+    transition: all 0.3s;
+    border: 1px solid var(--border-color)
     box-shadow: var(--shadow);
     transition: all 0.3s;
 }
@@ -311,7 +317,7 @@ section {
 }
 
 .feature-title {
-    font-size: 1.5rem;
+    font-size: 1.text;
     font-weight: 700;
     margin-bottom: 1rem;
     color: var(--dark-color);
@@ -361,7 +367,7 @@ section {
 }
 
 .step-content h3 {
-    font-size: 1.3rem;
+    font-size: 1.text;
     margin-bottom: 0.5rem;
     color: var(--dark-color);
 }
@@ -371,14 +377,15 @@ section {
     line-height: 1.6;
 }
 
-.step-content code {
-    background: var(--light-color);
+.step-content code {darker-color);
     padding: 0.2rem 0.6rem;
     border-radius: 4px;
     font-family: 'Courier New', monospace;
     color: var(--primary-color);
+    border: 1px solid var(--borderr New', monospace;
+    color: var(--primary-color);
 }
-
+2a2a1a
 .installation-note {
     background: #fff3cd;
     border-left: 4px solid #ffc107;
@@ -393,7 +400,7 @@ section {
     font-size: 2rem;
 }
 
-.note-content h4 {
+.note-content h4 text
     margin-bottom: 0.5rem;
     color: var(--dark-color);
 }
@@ -413,12 +420,13 @@ section {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
 }
-
-.shortcut-card {
-    background: white;
+var(--dark-color);
     padding: 2rem;
     border-radius: 12px;
     box-shadow: var(--shadow);
+    text-align: center;
+    transition: all 0.3s;
+    border: 1px solid var(--border-color)adow);
     text-align: center;
     transition: all 0.3s;
 }
@@ -443,7 +451,7 @@ section {
     box-shadow: 0 4px 10px rgba(102, 126, 234, 0.3);
 }
 
-.shortcut-card h4 {
+.shortcut-card h4text
     font-size: 1.3rem;
     margin-bottom: 0.5rem;
     color: var(--dark-color);
@@ -470,7 +478,7 @@ section {
     margin-bottom: 1rem;
 }
 
-.works-item h3 {
+.works-item h3 {text
     font-size: 1.5rem;
     margin-bottom: 1rem;
     color: var(--dark-color);
@@ -507,7 +515,7 @@ section {
 .contact-icon {
     font-size: 2rem;
 }
-
+text
 .contact-item h4 {
     margin-bottom: 0.5rem;
     color: var(--dark-color);
@@ -516,10 +524,11 @@ section {
 .contact-item p {
     color: var(--text-light);
 }
-
-.contact-form {
-    background: white;
+var(--dark-color);
     padding: 2rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color
     border-radius: 12px;
     box-shadow: var(--shadow);
 }
@@ -534,6 +543,8 @@ section {
     padding: 1rem;
     border: 2px solid var(--border-color);
     border-radius: 8px;
+    background: var(--darker-color);
+    color: var(--text-color);
     font-family: inherit;
     font-size: 1rem;
     transition: border-color 0.3s;
@@ -545,6 +556,7 @@ section {
     border-color: var(--primary-color);
 }
 
+    border-top: 1px solid var(--border-color);
 /* Footer */
 .footer {
     background: var(--dark-color);
@@ -594,12 +606,13 @@ section {
     .hamburger {
         display: flex;
     }
-
-    .nav-menu {
-        position: fixed;
-        left: -100%;
-        top: 70px;
-        flex-direction: column;
+var(--dark-color);
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.5);
+        padding: 2rem 0;
+        border-bottom: 1px solid var(--border-color) column;
         background: white;
         width: 100%;
         text-align: center;
