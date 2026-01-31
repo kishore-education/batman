@@ -337,6 +337,44 @@ document.addEventListener('DOMContentLoaded', function() {
         this.style.transform = 'translateY(0)';
     });
 
+    // Update Popup Logic
+    const popup = document.getElementById('update-popup');
+    if (popup) {
+        const closeBtn = popup.querySelector('.popup-close');
+        const actionBtn = popup.querySelector('.popup-btn');
+
+        function showPopup() {
+            // Check if specifically this version update has been seen
+            if (!localStorage.getItem('updatePopupShown_AllUrlsSupport')) {
+                popup.style.display = 'flex';
+                // Trigger reflow
+                popup.offsetHeight;
+                popup.classList.add('active');
+            }
+        }
+
+        function closePopup() {
+            popup.classList.remove('active');
+            setTimeout(() => {
+                popup.style.display = 'none';
+            }, 300);
+            localStorage.setItem('updatePopupShown_AllUrlsSupport', 'true');
+        }
+
+        // Show after a short delay
+        setTimeout(showPopup, 2000); 
+
+        if (closeBtn) closeBtn.addEventListener('click', closePopup);
+        if (actionBtn) actionBtn.addEventListener('click', closePopup);
+        
+        // Close on outside click
+        popup.addEventListener('click', (e) => {
+            if (e.target === popup) {
+                closePopup();
+            }
+        });
+    }
+
     // Log initialization
     console.log('🦇 Batman ExamShield Website Initialized');
 });
