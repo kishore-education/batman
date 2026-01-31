@@ -9,12 +9,6 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Top Announcement Bar -->
-    <div id="announcement-bar" class="announcement-bar" style="display: none;">
-        <p>🚀 <strong>Major Update:</strong> Batman ExamShield now supports <strong>ALL URL types</strong>! Enhanced protection everywhere.</p>
-        <button id="close-announcement" aria-label="Close announcement">&times;</button>
-    </div>
-
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container nav-container">
@@ -79,9 +73,9 @@
                 </div>
                 <div class="hero-image">
                     <div class="floating-card">
-                        <div class="card-icon">�</div>
-                        <h3>Major Update</h3>
-                        <p>Now supports ALL URL types for enhanced protection</p>
+                        <div class="card-icon">🛡️</div>
+                        <h3>Exam Protection</h3>
+                        <p>(now it supports all links(placement.skct.edu.in etc)) major update</p>
                     </div>
                 </div>
             </div>
@@ -535,5 +529,16 @@
     </footer>
 
     <script src="main.js"></script>
+
+    <!-- New Update Popup -->
+    <div id="update-popup" class="popup-overlay">
+        <div class="popup-content">
+            <button class="popup-close">&times;</button>
+            <div class="popup-icon">🚀</div>
+            <h2>Major Update!</h2>
+            <p>Batman ExamShield now supports <strong>ALL URL types</strong>! Experience enhanced protection and features across any exam portal or website.</p>
+            <button class="btn btn-primary popup-btn">Awesome, Got it!</button>
+        </div>
+    </div>
 </body>
 </html>

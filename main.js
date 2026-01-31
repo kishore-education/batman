@@ -337,27 +337,42 @@ document.addEventListener('DOMContentLoaded', function() {
         this.style.transform = 'translateY(0)';
     });
 
-    // Top Announcement Bar Logic
-    const announcementBar = document.getElementById('announcement-bar');
-    const closeAnnouncementBtn = document.getElementById('close-announcement');
-    
-    // Check if announcement has been closed previously
-    // Using a new key for this specific announcement
-    const announcementId = 'announcement_all_urls_v1';
-    
-    if (announcementBar && !localStorage.getItem(announcementId)) {
-        // Show announcement
-        announcementBar.style.display = 'flex';
-        document.body.classList.add('has-announcement');
-        
-        // Handle close
-        if (closeAnnouncementBtn) {
-            closeAnnouncementBtn.addEventListener('click', function() {
-                announcementBar.style.display = 'none';
-                document.body.classList.remove('has-announcement');
-                localStorage.setItem(announcementId, 'closed');
-            });
+    // Update Popup Logic
+    const popup = document.getElementById('update-popup');
+    if (popup) {
+        const closeBtn = popup.querySelector('.popup-close');
+        const actionBtn = popup.querySelector('.popup-btn');
+
+        function showPopup() {
+            // Check if specifically this version update has been seen
+            if (!localStorage.getItem('updatePopupShown_AllUrlsSupport')) {
+                popup.style.display = 'flex';
+                // Trigger reflow
+                popup.offsetHeight;
+                popup.classList.add('active');
+            }
         }
+
+        function closePopup() {
+            popup.classList.remove('active');
+            setTimeout(() => {
+                popup.style.display = 'none';
+            }, 300);
+            localStorage.setItem('updatePopupShown_AllUrlsSupport', 'true');
+        }
+
+        // Show after a short delay
+        setTimeout(showPopup, 2000); 
+
+        if (closeBtn) closeBtn.addEventListener('click', closePopup);
+        if (actionBtn) actionBtn.addEventListener('click', closePopup);
+        
+        // Close on outside click
+        popup.addEventListener('click', (e) => {
+            if (e.target === popup) {
+                closePopup();
+            }
+        });
     }
 
     // Log initialization

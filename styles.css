@@ -679,70 +679,88 @@ var(--dark-color);
     }
 }
 
-/* Announcement Bar */
-.announcement-bar {
-    background: linear-gradient(90deg, #667eea, #764ba2);
-    color: white;
-    text-align: center;
-    padding: 12px 40px;
+/* Update Popup */
+.popup-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 1100; /* Above navbar */
-    display: flex;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    font-weight: 500;
+    z-index: 2000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    backdrop-filter: blur(5px);
 }
 
-.announcement-bar p {
-    margin: 0;
-    font-size: 0.95rem;
-    line-height: 1.4;
+.popup-overlay.active {
+    opacity: 1;
 }
 
-.announcement-bar button {
+.popup-content {
+    background: #1a1a1a;
+    padding: 2.5rem;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+    position: relative;
+    border: 1px solid #333;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+}
+
+.popup-overlay.active .popup-content {
+    transform: translateY(0);
+}
+
+.popup-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
     background: none;
     border: none;
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 1.8rem;
+    font-size: 2rem;
+    color: #a0a0a0;
     cursor: pointer;
-    position: absolute;
-    right: 15px;
-    line-height: 1;
-    padding: 0 5px;
     transition: color 0.3s;
+    line-height: 1;
 }
 
-.announcement-bar button:hover {
-    color: white;
+.popup-close:hover {
+    color: #667eea;
 }
 
-/* Push content down when announcement is visible */
-body.has-announcement .navbar {
-    top: 48px; /* Height of announcement bar */
+.popup-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    animation: bounce 2s infinite;
 }
 
-body.has-announcement .hero {
-    margin-top: 118px; /* 70px + 48px */
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-20px); }
+    60% { transform: translateY(-10px); }
 }
 
-/* Mobile adjustments */
-@media (max-width: 768px) {
-    .announcement-bar {
-        padding: 10px 35px 10px 15px;
-        text-align: left;
-    }
-    
-    .announcement-bar p {
-        font-size: 0.85rem;
-    }
+.popup-content h2 {
+    color: #667eea;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+}
 
-    body.has-announcement .navbar {
-        top: auto; /* Let it use transform if needed, or stick to top shift */
-        margin-top: 0;
-        top: 60px; /* Taller on mobile potentially due to text wrap */
-    }
+.popup-content p {
+    color: #e0e0e0;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.popup-btn {
+    width: 100%;
+    font-size: 1.1rem;
 }
