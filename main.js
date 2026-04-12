@@ -84,9 +84,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // Smooth scrolling for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
+            const href = this.getAttribute('href');
+            if (!href || href === '#') {
+                return;
+            }
+
+            const target = document.querySelector(href);
             if (target) {
+                e.preventDefault();
                 const offsetTop = target.offsetTop - 70;
                 window.scrollTo({
                     top: offsetTop,
