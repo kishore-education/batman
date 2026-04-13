@@ -40,7 +40,103 @@ async function fetchOTP() {
     }
 }
 
+function getCurrentPageName() {
+    const page = window.location.pathname.split('/').pop();
+    return page || 'index.html';
+}
+
+function createWelcomePopup() {
+    if (document.getElementById('startup-welcome-popup')) {
+        return;
+    }
+
+    const popup = document.createElement('div');
+    popup.id = 'startup-welcome-popup';
+    popup.className = 'popup-overlay';
+    popup.innerHTML = `
+        <div class="popup-content" role="dialog" aria-modal="true" aria-label="Welcome to Batman Product Suite">
+            <button class="popup-close" type="button" aria-label="Close welcome popup">&times;</button>
+            <h2>Welcome to Batman Product Suite</h2>
+            <p>Choose your path: Extension for browser workflows, or Tutorial for Batman-0.1 EXE setup and runtime flow.</p>
+            <div class="tutorial-actions" style="justify-content: center;">
+                <a href="tutorial.html" class="btn btn-primary">Open Tutorial</a>
+                <button type="button" class="btn btn-secondary" id="continue-home-btn">Continue to Home</button>
+            </div>
+        </div>
+    `;
+
+    function closeWelcomePopup() {
+        popup.classList.remove('active');
+        setTimeout(() => {
+            popup.style.display = 'none';
+        }, 250);
+        localStorage.setItem('welcomePopupSeen_v1', 'true');
+    }
+
+    popup.style.display = 'flex';
+    document.body.appendChild(popup);
+    popup.offsetHeight;
+    popup.classList.add('active');
+
+    const closeButton = popup.querySelector('.popup-close');
+    const continueButton = popup.querySelector('#continue-home-btn');
+    const tutorialButton = popup.querySelector('a[href="tutorial.html"]');
+
+    if (closeButton) {
+        closeButton.addEventListener('click', closeWelcomePopup);
+    }
+
+    if (continueButton) {
+        continueButton.addEventListener('click', closeWelcomePopup);
+    }
+
+    if (tutorialButton) {
+        tutorialButton.addEventListener('click', () => {
+            localStorage.setItem('welcomePopupSeen_v1', 'true');
+        });
+    }
+
+    popup.addEventListener('click', (event) => {
+        if (event.target === popup) {
+            closeWelcomePopup();
+        }
+    });
+}
+
+function runStartupWelcomeFlow() {
+    const pageName = getCurrentPageName().toLowerCase();
+    const params = new URLSearchParams(window.location.search);
+    const fromStartupRedirect = params.get('welcome') === '1';
+    const startupHandled = sessionStorage.getItem('startupWelcomeHandled') === 'true';
+
+    if (!startupHandled) {
+        sessionStorage.setItem('startupWelcomeHandled', 'true');
+        if (pageName !== 'index.html') {
+            window.location.replace('index.html?welcome=1');
+            return false;
+        }
+    }
+
+    if (pageName === 'index.html') {
+        const seenWelcomeBefore = localStorage.getItem('welcomePopupSeen_v1') === 'true';
+        if (fromStartupRedirect || !seenWelcomeBefore) {
+            createWelcomePopup();
+        }
+
+        if (fromStartupRedirect) {
+            const cleanPath = `${window.location.pathname}${window.location.hash}`;
+            window.history.replaceState({}, document.title, cleanPath || 'index.html');
+        }
+    }
+
+    return true;
+}
+
 document.addEventListener('DOMContentLoaded', function() {
+    if (!runStartupWelcomeFlow()) {
+        return;
+    }
+
     // Fetch OTP on page load (after DOM is ready)
     fetchOTP();
     

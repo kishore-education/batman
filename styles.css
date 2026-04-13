@@ -133,8 +133,41 @@ section {
     transition: 0.3s ease;
 }
 
-.fullscreen-image-section {
+.sale-banner {
     margin-top: 92px;
+    padding: 18px 0 0;
+}
+
+.sale-banner-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 12px;
+    padding: 12px 16px;
+    border: 1px solid rgba(245, 158, 11, 0.45);
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(45, 212, 191, 0.1));
+    color: #f6fbff;
+}
+
+.sale-banner-inner p {
+    margin: 0;
+}
+
+.sale-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: rgba(245, 158, 11, 0.28);
+    border: 1px solid rgba(245, 158, 11, 0.6);
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+}
+
+.fullscreen-image-section {
+    margin-top: 0;
     padding: 26px 0 10px;
 }
 
@@ -469,6 +502,118 @@ section {
     background: rgba(245, 158, 11, 0.08);
 }
 
+.tutorial-guide {
+    background: transparent;
+}
+
+.tutorial-intro {
+    margin-bottom: 26px;
+    padding: 24px;
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(45, 212, 191, 0.42);
+    background: linear-gradient(135deg, rgba(45, 212, 191, 0.16), rgba(23, 37, 57, 0.92));
+    box-shadow: var(--shadow-soft);
+}
+
+.tutorial-intro h2 {
+    color: var(--title);
+    font-family: 'Sora', sans-serif;
+    margin-bottom: 6px;
+}
+
+.tutorial-intro p {
+    color: var(--text-muted);
+    margin-bottom: 14px;
+}
+
+.tutorial-steps {
+    display: grid;
+    gap: 22px;
+}
+
+.tutorial-step {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 20px;
+    align-items: center;
+}
+
+.tutorial-copy {
+    min-width: 0;
+}
+
+.tutorial-copy h3 {
+    margin-bottom: 8px;
+}
+
+.tutorial-media {
+    margin: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-soft);
+    background: rgba(10, 16, 26, 0.8);
+}
+
+.tutorial-media img {
+    width: 100%;
+    height: auto;
+}
+
+.tutorial-actions {
+    margin-top: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.hotkeys-section {
+    margin-top: 44px;
+}
+
+.hotkeys-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+}
+
+.hotkey-card {
+    padding: 18px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border);
+    background: linear-gradient(180deg, rgba(31, 49, 74, 0.86), rgba(23, 37, 57, 0.92));
+    box-shadow: var(--shadow-soft);
+}
+
+.hotkey-card h3 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+    color: var(--title);
+    font-family: 'Sora', sans-serif;
+    font-size: 1rem;
+    margin-bottom: 8px;
+}
+
+.hotkey-card p {
+    color: var(--text-muted);
+}
+
+.tutorial-checklist {
+    margin: 0;
+    padding-left: 18px;
+    color: var(--text-muted);
+}
+
+.tutorial-checklist li {
+    margin-bottom: 8px;
+}
+
+.tutorial-checklist li:last-child {
+    margin-bottom: 0;
+}
+
 .shortcut-keys {
     margin-bottom: 12px;
 }
@@ -731,11 +876,23 @@ code {
     .logo-text {
         font-size: 1.12rem;
     }
+
+    .tutorial-step {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 560px) {
     section {
         padding: 64px 0;
+    }
+
+    .sale-banner {
+        padding-top: 14px;
+    }
+
+    .sale-banner-inner {
+        padding: 10px 12px;
     }
 
     .hero-buttons {
