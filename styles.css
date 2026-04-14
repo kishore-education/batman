@@ -560,6 +560,12 @@ section {
     height: auto;
 }
 
+.tutorial-media video {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
 .tutorial-actions {
     margin-top: 14px;
     display: flex;
